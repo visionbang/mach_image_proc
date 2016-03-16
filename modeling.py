@@ -11,7 +11,8 @@ from keras.layers import Convolution2D ,MaxPooling2D,Flatten
 a = open('d://labels.p')
 b = open('d://images.p')
 labels = pickle.load(a)
-imgs = np.array(pickle.load(b))/256
+imgs = np.array(pickle.load(b))
+imgs /= 255
 labels = np_utils.to_categorical(labels,nb_classes=2)
 
 #imgs for CNN
@@ -48,6 +49,7 @@ model2.add(Dense(2))
 model2.add(Activation('softmax'))
 
 # let's train the model using SGD + momentum (how original).
-model2.compile(loss='mse', optimizer=SGD(lr=0.07, decay=1e-6, momentum=0.9, nesterov=True))
+model2.compile(loss='mse', optimizer=SGD(lr=0.09, decay=1e-6, momentum=0.9, nesterov=True))
 # let's train the model using SGD + momentum (how original)
-hist2 = model2.fit(np.array(x_tr2), y_tr2, nb_epoch=100,validation_split=0.1, batch_size=36,show_accuracy=True,shuffle=True)
+hist2 = model2.fit(np.array(x_tr2), y_tr2, nb_epoch=40,validation_split=0.1, batch_size=36,show_accuracy=True,shuffle=True)
+model2.summary()
