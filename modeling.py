@@ -33,6 +33,7 @@ x_tr,x_te,y_tr,y_te = train_test_split(imgs,labels,test_size= 0.2,random_state= 
 
 model1 = Sequential()
 model1.add(Dense(30, input_dim=2500, activation="sigmoid", init='normal'))
+model1.add(Dropout(0.25))
 model1.add(Dense(1, activation="softmax", init='normal'))
 model1.compile(loss='categorical_crossentropy', optimizer=SGD())
 
@@ -83,20 +84,39 @@ model2.compile(loss='categorical_crossentropy', optimizer=SGD(lr=0.0025, decay=1
 # model3.add(Dense(2,activation='softmax'))
 # model3.compile(loss='categorical_crossentropy', optimizer=SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True))
 
+model3 = Sequential()
+history3 = History()
+model3.add(Convolution2D(50,5, 5, border_mode='same',activation='tanh' ,input_shape=(1, 50, 50)))
+# model3.add(Convolution2D(50, 5, 5,,activation='logistic' ,init='uniform'))
+model3.add(MaxPooling2D(pool_size=(2, 2)))
+model3.add(Dropout(0.25))
 
-hist2 = model2.fit(np.array(x_tr2), y_tr2, nb_epoch=500,validation_split=0.3,
-                    batch_size=30,show_accuracy=True,shuffle=True,callbacks=[history2])
-print(model2.summary())
-plt.plot(history2.history['acc'],label='acc')
-plt.plot(history2.history['loss'],label='loss')
-plt.plot(history2.history['val_loss'],label='val_loss')
-plt.plot(history2.history['val_acc'],label='val_acc')
-plt.legend()
-plt.grid('off')
-plt.show()
+# model3.add(Convolution2D(100, 5, 5, border_mode='same'))
+# model3.add(Activation('LSTM'))
+# model3.add(Convolution2D(100, 5, 5,init='uniform'))
+# model3.add(Activation('LSTM'))
+# model3.add(MaxPooling2D(pool_size=(2, 2)))
+# model3.add(Dropout(0.25))
 
-y_pred2 = model2.predict_classes(np.array(x_te2))
-y_ten2 = cat2lab(y_te2)
+model3.add(Flatten())
+model3.add(Dense(1250,init='uniform'))
+model3.add(Activation('tanh'))
+model3.add(Dense(2,activation='softmax'))
+model3.compile(loss='categorical_crossentropy', optimizer=SGD(lr=0.01, decay=1e-6, momentum=0.6, nesterov=True))
 
-print(classification_report(y_ten2,y_pred2))
+# hist2 = model2.fit(np.array(x_tr2), y_tr2, nb_epoch=500,validation_split=0.3,
+#                     batch_size=30,show_accuracy=True,shuffle=True,callbacks=[history2])
+# print(model2.summary())
+# plt.plot(history2.history['acc'],label='acc')
+# plt.plot(history2.history['loss'],label='loss')
+# plt.plot(history2.history['val_loss'],label='val_loss')
+# plt.plot(history2.history['val_acc'],label='val_acc')
+# plt.legend()
+# plt.grid('off')
+# plt.show()
+# 
+# y_pred2 = model2.predict_classes(np.array(x_te2))
+# y_ten2 = cat2lab(y_te2)
+# 
+# print(classification_report(y_ten2,y_pred2))
 
