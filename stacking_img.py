@@ -11,7 +11,7 @@ label = []
 for path in PATHS:
     imgs = listdir(path)
     for img in imgs:
-        matrix.append(plt.imread(path + img).flatteb())
+        matrix.append(plt.imread(path + img).flatten())
         if img[0] != 'n':   # If file name got 'n' at first append 1
             label.append(1)
         else:
