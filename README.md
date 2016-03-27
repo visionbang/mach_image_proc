@@ -13,14 +13,13 @@
 ## Purpose
 
 ### `1.Automate preprocessing`
-		* Selecting the regions of interest(ROI)
+* Selecting the regions of interest(ROI)
 ### `2.Use both ML and neural network`
-		* Find compact model(least computing but use gpu on nerual
+* Find compact model(least computing but use gpu on nerual
 ### `3.Select best classification model`
-		* Best precision model
+* Best precision model
 
 
 
-##
 
 ## License
