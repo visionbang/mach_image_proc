@@ -1,4 +1,4 @@
-# Image classification for car defect detection
+# Automation for car inspection using Mach-band image
 
 ## Abstract
 
