@@ -20,4 +20,4 @@
 * Best precision model
 
 ## License
-* This repo follows MIT license
+This repo follows MIT license
