@@ -3,7 +3,7 @@
 ## Abstract
 
 ### Samples of original pictures for each class
-|Class|Images|Number|
+|Class|Images|Num of pics|
 |:---:|:---:|:---:|
 |`Normal`|![Normal Images](/imgs/nor_merged.png)|42|
 |`Error`|![Error Images](/imgs/err_merged.png)|47|
