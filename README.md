@@ -3,10 +3,10 @@
 ## Abstract
 
 ### Samples of original pictures for each class
-|Class|Images|Num of pics|
+|Class|Num of pics|Images|
 |:---:|:---:|:---:|
-|`Normal`|![Normal Images](/imgs/nor_merged.png)|42|
-|`Error`|![Error Images](/imgs/err_merged.png)|47|
+|`Normal`|42|![Normal Images](/imgs/nor_merged.png)|
+|`Error`|47|![Error Images](/imgs/err_merged.png)|
 
 ## Purpose
 
