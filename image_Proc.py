@@ -6,7 +6,7 @@ import PIL
 import PIL.ImageOps
 
     
-def get_pure_imagef(path,format = '.jpg'):    
+def get_pure_imagef(path,format = ['.jpg','.JPG']):    
     
     '''
     Get list of only format files
@@ -20,7 +20,7 @@ def get_pure_imagef(path,format = '.jpg'):
     get_files = listdir(path)
     get_files.sort()
     for i,file in enumerate(get_files):
-        if file.find(format) == -1:
+        if file.find(format[0]) + file.find(format[1]) == -2:
             print(i,get_files.pop(i))
     print(get_files)
     
