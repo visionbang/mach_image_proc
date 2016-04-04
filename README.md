@@ -26,4 +26,4 @@
 
 
 ## License
-This repo follows The MIT License (MIT)
+This repo follows GNU General Public License v3.0
