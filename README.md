@@ -1,9 +1,10 @@
-# Automation for car inspection using Mach-band image
+# Automation of car defect detection using Mach-band image
 
 ## Abstract
 
+
 ### Samples of original pictures for each class
-|Class|Num of pics|Images|
+|Class|Num of pics|Mach-band images|
 |:---:|:---:|:---:|
 |`Normal`|42|![Normal Images](/imgs/nor_merged.png)|
 |`Error`|47|![Error Images](/imgs/err_merged.png)|
@@ -11,15 +12,18 @@
 ## Purpose
 
 ### `1.Automate preprocessing`
-* Denoising - Gamma correction, Morphology
+* Denoising - Gamma correction, Morphology, Edge detect
 * Selecting and croping the regions of interest(ROI)
 * Resizing and picklizing
 
-### `2.Use both ML and neural network`
-* Find compact model(least compute but use gpu on nerual model)
-
-### `3.Select best classification model`
+### `2.Select best classification model`
 * Best precision model
+* Compact model(least compute)
+
+### `PS.`
+* Use GPU on neural model
+* Try Ensenble on ML models
+
 
 ## License
 This repo follows The MIT License (MIT)
