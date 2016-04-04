@@ -17,7 +17,7 @@
 * Resizing and picklizing
 
 ### `2.Select best classification model`
-* Best precision model
+* Best accuracy model
 * Compact model(least compute)
 
 ### `3.PS.`
