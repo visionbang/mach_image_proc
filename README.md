@@ -20,7 +20,7 @@
 * Best precision model
 * Compact model(least compute)
 
-### `PS.`
+### `3.PS.`
 * Use GPU on neural model
 * Try Ensenble on ML models
 
