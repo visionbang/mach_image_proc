@@ -2,11 +2,13 @@
 
 from scipy import ndimage
 from os import listdir
-import PIL
+import matplotlib.pylab as plt
 import PIL.ImageOps
+import pickle
+import PIL
 
-    
-def get_pure_imagef(path,format = '.jpg'):    
+
+def get_pure_imagef(path,formats = ['.jpg','.JPG']):    
     
     '''
     Get list of only format files
@@ -14,17 +16,24 @@ def get_pure_imagef(path,format = '.jpg'):
     #Args 
     
     path : path for directory that is files exist
-    format : only extension 
+    formats : only extension 
     '''
     
     get_files = listdir(path)
     get_files.sort()
-    for i,file in enumerate(get_files):
-        if file.find(format) == -1:
-            print(i,get_files.pop(i))
-    print(get_files)
+    real_imgs = []
+    if type(formats) != list :
+        print('please input list to arg formats')
+        return
     
-    return get_files
+    
+    for i,file in enumerate(get_files):
+        for format in formats:
+            if file.find(format) != -1:
+                print(i,get_files[i])
+                real_imgs.append(get_files[i])
+    print(real_imgs)    
+    return real_imgs
 
 def make_bw (gray,threshold= 0.5):
     
@@ -71,6 +80,7 @@ def find_rect2(x,margin = 0):
     Find feature's rectangular coordinate by finding none zero pixel value
     
     #Args:
+    
     x : PIL.Image
     margin : size of margin
     
@@ -105,5 +115,59 @@ def find_rect2(x,margin = 0):
             break
     return rect
 
+def stack_imgs (nor_dir,err_dir):
+    '''
+    Make images vectorize and stack to matrix
     
+    #Args:
+    nor_dir : Str , directory existing normal images
+    err_dir : Str , directory existing error images
+    
+    
+    #Returns list of vectorized images, labels
+    '''
+    
+    PATHS = [err_dir,  nor_dir ]
+    matrix = []
+    label = []
+    
+    # Stack all pictures as vector 
+    for path in PATHS:
+        imgs = listdir(path)
+        for img in imgs:
+            matrix.append(plt.imread(path + img).flatten())
+            if img[0] != 'n':   # If file name got 'e' at first append 1
+                label.append(1)
+            else:
+                label.append(0)
+
+    print('num of pics: ' , len(matrix))
+    print('num of labs: ' , len(label))
+    return matrix , label
+                
+def mat2pickle(img_out_path ,lab_out_path,list_img,list_lab):
+    '''
+    Make list to pickle
+    
+    #Args:
+    
+    img_out_path : Str, path that you want to export picklized image list, should be formated as '.p'   
+    lab_out_path : Str, path that you want to export picklized label list, should be formated as '.p'
+    list_img : list, list of vectorized images
+    list_lab : list, list of vectorized labels
+    
+    #Returns None
+    '''
+    
+    # Save as pickle for convenience and further use
+    with  open(img_out_path ,mode='wb+') as sm:
+        pickle.dump(img_out_path,sm)
+        sm.close()
+    with  open(lab_out_path,mode='wb+') as sl:
+        pickle.dump(list_lab,sl)
+        sl.close()
+
+
+
+
 
