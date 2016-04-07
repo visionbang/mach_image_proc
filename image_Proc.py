@@ -2,8 +2,11 @@
 
 from scipy import ndimage
 from os import listdir
-import PIL
+import matplotlib.pylab as plt
 import PIL.ImageOps
+import pickle
+import PIL
+
 
     
 def get_pure_imagef(path,formats = ['.jpg','.JPG']):    
@@ -78,6 +81,7 @@ def find_rect2(x,margin = 0):
     Find feature's rectangular coordinate by finding none zero pixel value
     
     #Args:
+    
     x : PIL.Image
     margin : size of margin
     
@@ -111,3 +115,59 @@ def find_rect2(x,margin = 0):
             rect.append(x.shape[0]-j+margin)
             break
     return rect
+
+def stack_imgs (err_dir,nor_dir):
+    '''
+    Make images vectorize and stack to matrix
+    
+    #Args:
+    err_dir : Str , directory existing error images
+    err_dir : Str , directory existing normal images
+    
+    #Returns list of vectorized images, labels
+    '''
+    
+    PATHS = [err_dir,  nor_dir ]
+    matrix = []
+    label = []
+    
+    # Stack all pictures as vector 
+    for path in PATHS:
+        imgs = listdir(path)
+        for img in imgs:
+            matrix.append(plt.imread(path + img).flatten())
+            if img[0] != 'n':   # If file name got 'e' at first append 1
+                label.append(1)
+            else:
+                label.append(0)
+
+    print('num of pics: ' , len(matrix))
+    print('num of labs: ' , len(label))
+    return matrix , label
+                
+def mat2pickle(img_out_path ,lab_out_path,list_img,list_lab):
+    '''
+    Make list to pickle
+    
+    #Args:
+    
+    img_out_path : Str, path that you want to export picklized image list, should be formated as '.p'   
+    lab_out_path : Str, path that you want to export picklized label list, should be formated as '.p'
+    list_img : list, list of vectorized images
+    list_lab : list, list of vectorized labels
+    
+    #Returns list of vectorized images, labels
+    '''
+    
+    # Save as pickle for convenience and further use
+    with  open(img_out_path ,mode='wb+') as sm:
+        pickle.dump(img_out_path,sm)
+        sm.close()
+    with  open(lab_out_path,mode='wb+') as sl:
+        pickle.dump(list_lab,sl)
+        sl.close()
+
+
+
+
+
