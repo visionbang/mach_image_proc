@@ -8,7 +8,6 @@ import pickle
 import PIL
 
 
-    
 def get_pure_imagef(path,formats = ['.jpg','.JPG']):    
     
     '''
@@ -22,7 +21,7 @@ def get_pure_imagef(path,formats = ['.jpg','.JPG']):
     
     get_files = listdir(path)
     get_files.sort()
-    
+    real_imgs = []
     if type(formats) != list :
         print('please input list to arg formats')
         return
@@ -30,11 +29,11 @@ def get_pure_imagef(path,formats = ['.jpg','.JPG']):
     
     for i,file in enumerate(get_files):
         for format in formats:
-            if file.find(format) == -1:
-                print(i,get_files.pop(i))
-    print(get_files)
-    
-    return get_files
+            if file.find(format) != -1:
+                print(i,get_files[i])
+                real_imgs.append(get_files[i])
+    print(real_imgs)    
+    return real_imgs
 
 def make_bw (gray,threshold= 0.5):
     
@@ -116,13 +115,14 @@ def find_rect2(x,margin = 0):
             break
     return rect
 
-def stack_imgs (err_dir,nor_dir):
+def stack_imgs (nor_dir,err_dir):
     '''
     Make images vectorize and stack to matrix
     
     #Args:
+    nor_dir : Str , directory existing normal images
     err_dir : Str , directory existing error images
-    err_dir : Str , directory existing normal images
+    
     
     #Returns list of vectorized images, labels
     '''
