@@ -1,9 +1,6 @@
 # Automation of car dent detection using Mach-band image
 
 ## Abstract
-
-
-
 ### Samples of original pictures for each class
 |Class|Num of pics|Mach-band images|
 |:---:|:---:|:---:|
