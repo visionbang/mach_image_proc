@@ -6,7 +6,7 @@ import PIL
 import PIL.ImageOps
 
     
-def get_pure_imagef(path,format = ['.jpg','.JPG']):    
+def get_pure_imagef(path,formats = ['.jpg','.JPG']):    
     
     '''
     Get list of only format files
@@ -14,14 +14,21 @@ def get_pure_imagef(path,format = ['.jpg','.JPG']):
     #Args 
     
     path : path for directory that is files exist
-    format : only extension 
+    formats : only extension 
     '''
     
     get_files = listdir(path)
     get_files.sort()
+    
+    if type(formats) != list :
+        print('please input list to arg formats')
+        return
+    
+    
     for i,file in enumerate(get_files):
-        if file.find(format[0]) + file.find(format[1]) == -2:
-            print(i,get_files.pop(i))
+        for format in formats:
+            if file.find(format) == -1:
+                print(i,get_files.pop(i))
     print(get_files)
     
     return get_files
@@ -104,6 +111,3 @@ def find_rect2(x,margin = 0):
             rect.append(x.shape[0]-j+margin)
             break
     return rect
-
-    
-
