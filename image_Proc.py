@@ -156,7 +156,7 @@ def mat2pickle(img_out_path ,lab_out_path,list_img,list_lab):
     list_img : list, list of vectorized images
     list_lab : list, list of vectorized labels
     
-    #Returns list of vectorized images, labels
+    #Returns None
     '''
     
     # Save as pickle for convenience and further use
