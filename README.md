@@ -2,7 +2,7 @@
 
 ## Abstract
 
-
+nope
 ### Samples of original pictures for each class
 |Class|Num of pics|Mach-band images|
 |:---:|:---:|:---:|
