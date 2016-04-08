@@ -8,14 +8,17 @@ import pickle
 import PIL
 
 
-def get_pure_imagef(dir_path,formats = ['.jpg','.JPG']):    
+def get_pure_imagef(dir_path,formats = None):    
     '''
     Get list of only format files
     
     #Args 
     
     dir_path : Str, path for directory that is files exist
-    formats : Str, only extension 
+    formats : list, bunch of extension
+    
+    e.g)get_pure_imagef('d://', formats = ['.jpg','.JPG'])    
+
     '''
     if not path.isdir(dir_path):
         print('Please enter valid directory path')
@@ -25,8 +28,12 @@ def get_pure_imagef(dir_path,formats = ['.jpg','.JPG']):
     get_files = listdir(dir_path)
     get_files.sort()
     real_imgs = []
+    
+    # Assign jpg type as default
+    if formats is None:
+        formats = ['.jpg','.JPG'] 
     if type(formats) != list :
-        print('Please enter list to formats')
+        print('Please enter valid list to "formats"')
         return
     
     
@@ -72,6 +79,14 @@ def grey2ero_dil (grey,iterat = 3, n_ero = 30, n_dil=20):
     return PIL.Image.fromarray(ero_dil)
 
 def pil_inv(img):
+    '''
+    Invert image 
+    
+    #Args:
+    
+    img : PIL.Image
+    '''
+    
     img = PIL.ImageOps.invert(img)
     return img
 
