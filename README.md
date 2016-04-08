@@ -1,6 +1,11 @@
 # Automation of car dent detection using Mach-band image
 
+
 ## Abstract
+
+
+![animated](/imgs/animated_fixed.gif)
+
 ### Samples of original pictures for each class
 |Class|Num of pics|Mach-band images|
 |:---:|:---:|:---:|
@@ -18,7 +23,7 @@
 * Best score model
 * Compact model(least compute)
 
-### `3.PS.`
+### `PS.`
 * Use GPU on neural model
 * Try Ensenble on ML models
 
