@@ -1,3 +1,5 @@
+#-*- coding:utf-8 -*-
+
 from keras.layers.core import Dense, Dropout, Activation
 from keras.layers import Convolution2D ,MaxPooling2D,Flatten
 from sklearn.cross_validation import train_test_split
@@ -6,7 +8,7 @@ from keras.callbacks import History
 from keras.models import Sequential
 from keras.utils import np_utils
 from keras.optimizers import SGD
-from keras.regularizers import l2
+from keras.regularizers import l2, activity_l2
 import matplotlib.pylab as plt
 import numpy as np
 import pickle
@@ -20,15 +22,15 @@ imgsr = imgs /255
 labels = np_utils.to_categorical(labels,nb_classes=2)
 
 # Categorical to Label for further use in classification_report
-def cat2lab (x):
+def cat2lab (cat): 
     '''only for binary category'''
-    return np.array([0 if s[0] else 1 for s in x])
+    return np.array([0 if s[0] else 1 for s in cat])
 
 
 #imgs for CNN - it's shape (1,50,50) 
-imgs2d= []
+imgs3d= []
 for img in imgsr:
-    imgs2d.append(np.reshape(img,(1,50,50)))
+    imgs3d.append(np.reshape(img,(1,50,50)))
 
 x_tr,x_te,y_tr,y_te = train_test_split(imgsr,labels,test_size= 0.2,random_state= 193)    # Flattened imgs
 
@@ -52,7 +54,7 @@ model1.compile(loss='categorical_crossentropy', optimizer=SGD(lr=0.01,decay= 1e-
 # plt.show()
  
 # CNN modeling some layers are hashed to make compact model
-x_tr2,x_te2,y_tr2,y_te2 = train_test_split(imgs2d,labels,test_size= 0.2,random_state= 786)    #  (1,50,50) shaped imgs for CNN
+x_tr2,x_te2,y_tr2,y_te2 = train_test_split(imgs3d,labels,test_size= 0.2,random_state= 786)    #  (1,50,50) shaped imgs for CNN
 
 model2 = Sequential()
 model2.add(Convolution2D(10,10, 10, border_mode='same', input_shape=(1, 50, 50)))
