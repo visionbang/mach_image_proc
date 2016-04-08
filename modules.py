@@ -1,29 +1,32 @@
 #-*- coding:utf-8 -*-
 
 from scipy import ndimage
-from os import listdir
+from os import listdir, path
 import matplotlib.pylab as plt
 import PIL.ImageOps
 import pickle
 import PIL
 
 
-def get_pure_imagef(path,formats = ['.jpg','.JPG']):    
-    
+def get_pure_imagef(dir_path,formats = ['.jpg','.JPG']):    
     '''
     Get list of only format files
     
     #Args 
     
-    path : path for directory that is files exist
-    formats : only extension 
+    dir_path : Str, path for directory that is files exist
+    formats : Str, only extension 
     '''
+    if not path.isdir(dir_path):
+        print('Please enter valid directory path')
+        return
+
     
-    get_files = listdir(path)
+    get_files = listdir(dir_path)
     get_files.sort()
     real_imgs = []
     if type(formats) != list :
-        print('please input list to arg formats')
+        print('Please enter list to formats')
         return
     
     
@@ -32,40 +35,38 @@ def get_pure_imagef(path,formats = ['.jpg','.JPG']):
             if file.find(format) != -1:
                 print(i,get_files[i])
                 real_imgs.append(get_files[i])
-    print(real_imgs)    
     return real_imgs
 
-def make_bw (gray,threshold= 0.5):
-    
+def make_bw (grey,threshold= 0.5):
     '''
     Convert gray image to binary image
     
     #Args
 
-    gray :  greyscaled or 1D PIL.Image 
-    threshold : final threshold would be 255 * threshold for uint8 pixel values, 0< x < 1 float only 
+    gray :  1D PIL.Image, greyscale image
+    threshold : float, threshold would be 255 * threshold for uint8 pixel values, 0< x < 1 
     '''
     
-    bw = gray.point(lambda c : 255 if c > int( 255 * threshold) else 0)
+    bw = grey.point(lambda x : 255 if x > int( 255 * threshold) else 0)
     
     return bw
 
-def grey2ero_dil (gray,iterat = 3, n_ero = 30, n_dil=20):
+def grey2ero_dil (grey,iterat = 3, n_ero = 30, n_dil=20):
     '''
-    Function for image opening 
+    Function for morphological opening 
     
     #Args
 
-    gray :  greyscaled PIL.Image 
-    iterat : number of iteration , int
-    n_ero : size of erosion, ints or tuple
-    n_dil : size of dilation, ints or tuple
+    grey :  PIL.Image, greyscaled
+    iterat :int, number of iteration
+    n_ero : ints or tuple, size of erosion
+    n_dil : ints or tuple, size of dilation
     
     
     '''
     for i in xrange(iterat):
         
-        ero = ndimage.grey_erosion(gray, n_ero)
+        ero = ndimage.grey_erosion(grey, n_ero)
         ero_dil= ndimage.grey_dilation(ero, n_dil)
 
     return PIL.Image.fromarray(ero_dil)
@@ -74,44 +75,43 @@ def pil_inv(img):
     img = PIL.ImageOps.invert(img)
     return img
 
-def find_rect2(x,margin = 0):
-    
+def find_rect(x,margin = 100):
     '''
     Find feature's rectangular coordinate by finding none zero pixel value
     
     #Args:
     
-    x : PIL.Image
-    margin : size of margin
+    x : numpy.ndarray, array of image
+    margin : int, size of margin
     
     #Returns list of position - [left, upper, right, bottom]
     '''
-    
     rect = []
     x_sum_1=x.sum(axis=1)
     x_sum_0=x.sum(axis=0)
     
-    for j,i in  enumerate(x_sum_0):
-        if i != x_sum_0[1] & i != 0 :
-            print("left is ",j)
-            rect.append(j-margin)
+    for i,j in  enumerate(x_sum_0):
+        if j != x_sum_0[1] & j != 0 :
+            print("left is ",i)
+            rect.append(i-margin)
             break
-    for j,i in  enumerate(x_sum_1):
-        if i != x_sum_1[1] & i != 0:
-            print("upper is ",j)
-            rect.append(j-margin)
-            break
-
-    for j,i in  enumerate(reversed(x_sum_0)):
-        if i != x_sum_0[-2] & i != 0:
-            print("right is ",x.shape[1]-j)
-            rect.append(x.shape[1]-j+margin)
+        
+    for i,j in  enumerate(x_sum_1):
+        if j != x_sum_1[1] & j != 0:
+            print("upper is ",i)
+            rect.append(i-margin)
             break
 
-    for j,i in  enumerate(reversed(x_sum_1)):
-        if i != x_sum_1[-2] & i != 0:
-            print("bottom is ",x.shape[0]-j)
-            rect.append(x.shape[0]-j+margin)
+    for i,j in  enumerate(reversed(x_sum_0)):
+        if j != x_sum_0[-2] & j != 0:
+            print("right is ",x.shape[1]-i)
+            rect.append(x.shape[1]-i+margin)
+            break
+
+    for i,j in  enumerate(reversed(x_sum_1)):
+        if j != x_sum_1[-2] & j != 0:
+            print("bottom is ",x.shape[0]-i)
+            rect.append(x.shape[0]-i+margin)
             break
     return rect
 
@@ -127,7 +127,7 @@ def stack_imgs (nor_dir,err_dir):
     #Returns list of vectorized images, labels
     '''
     
-    PATHS = [err_dir,  nor_dir ]
+    PATHS = [err_dir,  nor_dir]
     matrix = []
     label = []
     
