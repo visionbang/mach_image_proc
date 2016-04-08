@@ -161,7 +161,7 @@ def mat2pickle(img_out_path ,lab_out_path,list_img,list_lab):
     
     # Save as pickle for convenience and further use
     with  open(img_out_path ,mode='wb+') as sm:
-        pickle.dump(img_out_path,sm)
+        pickle.dump(list_img,sm)
         sm.close()
     with  open(lab_out_path,mode='wb+') as sl:
         pickle.dump(list_lab,sl)

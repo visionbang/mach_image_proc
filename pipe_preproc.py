@@ -2,7 +2,7 @@
 
 from scipy import ndimage
 from os import path , mkdir
-import image_Proc as ip
+import modules as ip
 import PIL.ImageOps
 import numpy as np
 

@@ -9,4 +9,3 @@ pyzmq==14.7.0
 PyYAML==3.11
 Keras==0.3.2
 Theano==0.8.0rc1
-
