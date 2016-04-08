@@ -58,6 +58,7 @@ for path,opath in zip(PATHS,OUT_PATHS):
 #         lab_arr,num_lab = ndimage.measurements.label(img_bic,structure=[[1,1,1],[1,0,1] ,[1,1,1]])     # To confirm clear images, label objects
 #         print("num of objects :  " ,imgs, num_lab)
 #         print("array of objects :  " ,lab_arr)
+        print('for image : ', imgs)
         idx_crop = ip.find_rect(np.array(img_bicr),margin=OUT_MARGIN)    # Get index rectangular position
         print(idx_crop)
         im_final = img_c.crop(idx_crop)     # Crop from gamma corrected image with pre-get position
