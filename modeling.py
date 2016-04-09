@@ -78,7 +78,7 @@ x_tr2,x_te2,y_tr2,y_te2 = train_test_split(reg_imgs_2d,cat_labels,test_size= 0.2
 x_tr3,x_te3,y_tr3,y_te3 = train_test_split(reg_imgs_3d,cat_labels,test_size= 0.2,random_state= 123)
 x_trn1,x_ten1,y_trn1,y_ten1 = train_test_split(reg_imgs,labels,test_size= 0.2,random_state= 123)
 
-#Simple neural for trial 
+#Simple neuron 
 model1 = Sequential()
 model1.add(Dense(2500, input_dim=2500,init='uniform',activation='relu'))
 model1.add(Dropout(0.25))
