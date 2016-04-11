@@ -1,10 +1,9 @@
 # Automation of car dent detection using Mach-band image
 
 
-## Abstract
+## 1.Abstract
 
 
-![animated](/imgs/animated_fixed.gif)
 
 ### Samples of original pictures for each class
 |Class|Num of pics|Mach-band images|
@@ -12,7 +11,7 @@
 |`Normal`|65|![Normal Images](/imgs/nor_merged.png)|
 |`Error`|77|![Error Images](/imgs/err_merged.png)|
 
-## Purpose
+## 2.Purpose
 
 ### `1.Automate preprocessing`
 * Denoising - Gamma correction, Morphology, Edge detect
@@ -27,5 +26,5 @@
 * Use GPU on neural model
 * Try Ensenble on ML models
 
-## License
+## 3.License
 This repo follows GNU General Public License v3.0
