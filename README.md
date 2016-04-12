@@ -2,8 +2,9 @@
 
 
 ## 1.Abstract
+In terms of car dent inspection process, 
 
-
+* Workers are suffering from extremly high illumination(about 2000 Lux)
 
 ### Samples of original pictures for each class
 |Class|Num of pics|Mach-band images|
@@ -21,10 +22,7 @@
 ### `2.Select best classification model`
 * Best score model
 * Compact model(least compute)
-
-### `PS.`
-* Use GPU on neural model
-* Try Ensenble on ML models
+* Least time counsuming
 
 ## 3.License
 This repo follows GNU General Public License v3.0
