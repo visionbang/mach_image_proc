@@ -16,7 +16,7 @@ import matplotlib.pylab as plt
 import numpy as np
 import pickle
 
-
+#
 # Categorical to Label for further use in classification_report
 def cat2lab (cat): 
     '''only for binary category
@@ -78,7 +78,7 @@ x_tr2,x_te2,y_tr2,y_te2 = train_test_split(reg_imgs_2d,cat_labels,test_size= 0.2
 x_tr3,x_te3,y_tr3,y_te3 = train_test_split(reg_imgs_3d,cat_labels,test_size= 0.2,random_state= 123)
 x_trn1,x_ten1,y_trn1,y_ten1 = train_test_split(reg_imgs,labels,test_size= 0.2,random_state= 123)
 
-#Simple neural for trial 
+#Simple neuron 
 model1 = Sequential()
 model1.add(Dense(2500, input_dim=2500,init='uniform',activation='relu'))
 model1.add(Dropout(0.25))
@@ -118,14 +118,14 @@ model2.add(Activation('relu'))
 # model2.add(Convolution2D(100, 5, 5,init='uniform'))
 # model2.add(Activation('relu'))
 model2.add(MaxPooling2D(pool_size=(2, 2)))
-model2.add(Dropout(0.35))
+model2.add(Dropout(0.3))
 
 model2.add(Flatten())
 model2.add(Dense(1250,init='uniform'))
 model2.add(Activation('relu'))
 model2.add(Dense(2,activation='softmax'))
 model2.compile(loss='categorical_crossentropy', optimizer=SGD(lr=0.01,decay=1e-6,
-                                                              momentum=0.6,
+                                                              momentum=0.5,
                                                               nesterov=True))
 
 hist2 = model2.fit(x_tr3, y_tr3, nb_epoch=300 , batch_size=50 ,validation_split=0.2, show_accuracy=True ,shuffle=True,verbose =1)
