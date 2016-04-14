@@ -1,5 +1,19 @@
 # Automation of car dent detection using Mach-band image
 
+List of files and sepcifications
+
+#### Ipython Notebook files
+* `represent_0415.ipynb` : practical analysis, visualized
+* `represent_preproc_0415.ipynb` : demonstration of preprocessing 
+* `project_image_sandbox.ipynb` : experimental preprocessing
+* `theano_sandbox.ipynb` : experimental modeling
+
+
+#### python files
+* `modules.py` : all of modules are defined in here
+* `pipe_preproc.py` : all of preprocessing can be done in here 
+* `modeling.py` : practical analysis 
+
 
 ## 1.Abstract
 
