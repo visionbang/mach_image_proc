@@ -1,6 +1,6 @@
 # Automation of car dent detection using Mach-band image
 
-List of files and sepcifications
+List of files and description
 
 #### Ipython Notebook files
 * `represent_0415.ipynb` : practical analysis, visualized
