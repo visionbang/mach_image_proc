@@ -6,9 +6,9 @@
 ![current inspection](/imgs/inspection.png)
 
 In terms of car dent inspection process, 
-* Workers are suffering from extremly high illumination(about 2000 Lux)
+* Workers are suffering from extremely high illumination(about 2000 Lux)
 * Inspecting with their eyes
-* A defect rate of newly producted car(within 3 months) is about 11% with surface defects
+* A defect rate of newly producted car(within 3 months) is about 11% for surface defects
 
 ### Samples of original pictures for each class
 |Class|Num of pics|Mach-band images|
