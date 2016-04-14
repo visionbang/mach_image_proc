@@ -54,7 +54,7 @@ for path,opath in zip(PATHS,OUT_PATHS):
         img_bic = img_bic.filter(PIL.ImageFilter.FIND_EDGES)    # Find edges 
         img_bicr = ip.pil_inv(img_bic)     # Invert images 
 
-#         it's remained further use for getting n pieces of feature
+#         it's remained further use for getting n objects of feature
 #         lab_arr,num_lab = ndimage.measurements.label(img_bic,structure=[[1,1,1],[1,0,1] ,[1,1,1]])     # To confirm clear images, label objects
 #         print("num of objects :  " ,imgs, num_lab)
 #         print("array of objects :  " ,lab_arr)
