@@ -1,14 +1,28 @@
 # Automation of car dent detection using Mach-band image
 
+List of files and sepcifications
+
+#### Ipython Notebook files
+* `represent_0415.ipynb` : practical analysis, visualized
+* `represent_preproc_0415.ipynb` : demonstration of preprocessing 
+* `project_image_sandbox.ipynb` : experimental preprocessing
+* `theano_sandbox.ipynb` : experimental modeling
+
+
+#### python files
+* `modules.py` : all of modules are defined in here
+* `pipe_preproc.py` : all of preprocessing can be done in here 
+* `modeling.py` : practical analysis 
+
 
 ## 1.Abstract
 
 ![current inspection](/imgs/inspection.png)
 
 In terms of car dent inspection process, 
-* Workers are suffering from extremly high illumination(about 2000 Lux)
+* Workers are suffering from extremely high illumination(about 2000 Lux)
 * Inspecting with their eyes
-* A defect rate of newly producted car(within 3 months) is about 11% with surface defects
+* A defect rate of newly producted car(within 3 months) is about 11% for surface defects
 
 ### Samples of original pictures for each class
 |Class|Num of pics|Mach-band images|
