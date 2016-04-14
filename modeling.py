@@ -2,7 +2,6 @@
 from __future__ import division
 from keras.layers import Convolution2D ,MaxPooling2D,Flatten
 from keras.layers.core import Dense, Dropout, Activation
-from keras.regularizers import l2,activity_l2
 from keras.models import Sequential
 from keras.optimizers import SGD
 from keras.utils import np_utils
@@ -196,31 +195,3 @@ ens3.fit(x_trn1, y_trn1)
 print('RandomForest score : ',ens1.score(x_ten1,y_ten1))
 print('Adaboost-SVM score : ',ens2.score(x_ten1,y_ten1))
 print('Adaboost-Decision score : ',ens3.score(x_ten1,y_ten1))
-
-### Remained for experimental use
-# model3 = Sequential()
-# history3 = History()
-# model3.add(Convolution2D(50,5, 5, border_mode='same',activation='tanh' ,input_shape=(1, 50, 50)))
-# # model3.add(Convolution2D(50, 5, 5,,activation='logistic' ,init='uniform'))
-# model3.add(MaxPooling2D(pool_size=(2, 2)))
-# model3.add(Dropout(0.25))
-# 
-# # model3.add(Convolution2D(100, 5, 5, border_mode='same'))
-# # model3.add(Activation('LSTM'))
-# # model3.add(Convolution2D(100, 5, 5,init='uniform'))
-# # model3.add(Activation('LSTM'))
-# # model3.add(MaxPooling2D(pool_size=(2, 2)))
-# # model3.add(Dropout(0.25))
-# 
-# model3.add(Flatten())
-# model3.add(Dense(1250,init='uniform'))
-# model3.add(Activation('tanh'))
-# model3.add(Dense(2,activation='softmax'))
-# model3.compile(loss='categorical_crossentropy', optimizer=SGD(lr=0.01, decay=1e-6, momentum=0.6, nesterov=True))
-
-
-
-
-
-
-
